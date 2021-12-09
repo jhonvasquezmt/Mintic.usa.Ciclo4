@@ -43,7 +43,7 @@ function validateEmpty() {
         $.ajax({
 
             dataType: "json",
-            url:"http://129.151.122.220/api/user/"+email,
+            url:"http://129.151.122.220:8080/api/user/"+email,
             type:"GET",
             success: function(response){
 
@@ -67,7 +67,7 @@ function validateEmpty() {
         $.ajax({
 
             dataType: "json",
-            url:"http://129.151.122.220/api/user/"+email+"/"+password,
+            url:"http://129.151.122.220:8080/api/user/"+email+"/"+password,
             type:"GET",
             success: function(response){
 

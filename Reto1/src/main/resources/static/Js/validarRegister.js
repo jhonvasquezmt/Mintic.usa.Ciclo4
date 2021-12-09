@@ -46,7 +46,7 @@ function validateEmpty() {
         $.ajax({
 
             dataType: "json",
-            url:"http://129.151.122.220/api/user/"+email+"/"+password,
+            url:"http://129.151.122.220:8080/api/user/"+email+"/"+password,
             type:"GET",
             success: function(response){
 
@@ -82,7 +82,7 @@ function postUser (){
         dataType: "json",
         data:dataTosend,
         contentType:"application/json",
-        url:"http://129.151.122.220/api/user/new",
+        url:"http://129.151.122.220:8080/api/user/new",
         type:"POST",
         success: function(response){
             console.log(response);
