@@ -19,7 +19,7 @@ public class UserRepository {
     private UserCrudRepository userCrudRepository;
 
     public List<User> getAll(){
-        return (List<User>) userCrudRepository.findAll();
+        return userCrudRepository.findAll();
     }
     public Optional<User> getUser(int id){
         return userCrudRepository.findById(id);
@@ -29,8 +29,6 @@ public class UserRepository {
     }
     public boolean existEmail(String email){Optional<User> user = userCrudRepository.findByEmail(email);return !user.isEmpty();}
     public Optional<User> autenticarUser(String email, String password){return userCrudRepository.findByEmailAndPassword(email,password);}
-
-
     public void delete(User user){ userCrudRepository.delete(user);}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "*", methods={RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+
 public class UserController {
 
     @Autowired
@@ -25,19 +26,37 @@ public class UserController {
         return userService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Optional<User> getUser(@PathVariable("id") int id){
+        return userService.getUser(id);
+    }
+
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public User save(@RequestBody User user){
         return userService.save(user);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteUser(@PathVariable("id") int id){
+        return userService.deleteUser(id);
+    }
+
     @GetMapping("/{email}/{password}")
     public User autentUser(@PathVariable("email") String email,@PathVariable("password") String password){
         return userService.autenticarUser(email, password);
     }
-    @GetMapping("/{email}")
+    @GetMapping("/emailexist/{email}")
     public boolean email(@PathVariable("email") String email){
         return userService.existEmail(email);
     }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User update(@RequestBody User user){
+        return userService.update(user);
+    }
+
 
 }

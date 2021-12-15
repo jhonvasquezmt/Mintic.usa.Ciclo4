@@ -29,6 +29,7 @@ public class UserService {
         return userRepository.existEmail(email);
     }
 
+
     public User save(User user){
         if (user.getId()==null){
             if (userRepository.existEmail(user.getEmail())==false){
@@ -41,15 +42,61 @@ public class UserService {
             }
 
         }
+    public User update(User newUser){
+
+        if(newUser.getId()!=null){
+            Optional<User>dbUser=userRepository.getUser(newUser.getId());
+            if(!dbUser.isEmpty()){
+                if(newUser.getIdentification()!=null){
+                    dbUser.get().setIdentification(newUser.getIdentification());
+                }
+                if(newUser.getName()!=null){
+                    dbUser.get().setName(newUser.getName());
+                }
+                if(newUser.getAddress()!=null){
+                    dbUser.get().setAddress(newUser.getAddress());
+                }
+                if(newUser.getCellPhone()!=null){
+                    dbUser.get().setCellPhone(newUser.getCellPhone());
+                }
+                if(newUser.getEmail()!=null){
+                    dbUser.get().setEmail(newUser.getEmail());
+                }
+                if(newUser.getPassword()!=null){
+                    dbUser.get().setPassword(newUser.getPassword());
+                }
+                if(newUser.getZone()!=null){
+                    dbUser.get().setZone(newUser.getZone());
+                }
+                if(newUser.getType()!=null){
+                    dbUser.get().setType(newUser.getType());
+                }
+                return userRepository.save(dbUser.get());
+
+            }
+        }
+        return newUser;
+    }
+
+
+
     public User autenticarUser(String email,String password){
         Optional<User> user = userRepository.autenticarUser(email, password);
         if (user.isEmpty()){
-            return new User(email, password, "NO DEFINIDO");
+            return new User();
         } else {
     return  user.get();
         }
     }
+    public boolean deleteUser(int id){
+        Optional<User> user=getUser(id);
+        if(!user.isEmpty()){
+            userRepository.delete(user.get());
+            return true;
+        }
+        return false;
 
+    }
     }
 
 

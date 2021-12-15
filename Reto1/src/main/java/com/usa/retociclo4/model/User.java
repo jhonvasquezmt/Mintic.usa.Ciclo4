@@ -1,35 +1,32 @@
 package com.usa.retociclo4.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
-import javax.persistence.*;
-import java.io.Serializable;
+
+
 
 /**
  *
  * @author JhonV
  */
-@Entity
+@Document(collection = "users")
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor
-@Table(name="user", indexes = @Index(name= "indx_email",columnList = "user_email",unique = true))
-public class User implements Serializable {
+@AllArgsConstructor
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NonNull
-    @Column(name = "user_email",nullable = false)
-    private String email;
-    @NonNull
-    @Column(name = "user_password",nullable = false)
-    private String password;
-    @NonNull
-    @Column(name = "user_name",nullable = false)
+    private String identification;
     private String name;
+    private String address;
+    private String cellPhone;
+    private String email;
+    private String password;
+    private String zone;
+    private String type;
+
 }
