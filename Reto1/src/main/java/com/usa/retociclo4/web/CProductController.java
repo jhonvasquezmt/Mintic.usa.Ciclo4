@@ -14,7 +14,7 @@ import java.util.Optional;
  * @author JhonV
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/cleaningprod")
 public class CProductController {
 
     @Autowired

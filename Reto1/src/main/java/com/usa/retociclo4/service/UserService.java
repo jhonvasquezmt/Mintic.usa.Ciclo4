@@ -30,7 +30,7 @@ public class UserService {
     }
 
 
-    public User save(User user){
+    /*public User save(User user){
         if (user.getId()==null){
             if (userRepository.existEmail(user.getEmail())==false){
                 return userRepository.save(user);
@@ -41,7 +41,23 @@ public class UserService {
             return user;
             }
 
+        }*/
+    public User save(User user) {
+        if (user.getId() == null) {
+            return user;
+        }else {
+            Optional<User> u = userRepository.getUser(user.getId());
+            if (u.isEmpty()) {
+                if (existEmail(user.getEmail())==false){
+                    return userRepository.save(user);
+                }else{
+                    return user;
+                }
+            }else{
+                return user;
+            }
         }
+    }
     public User update(User newUser){
 
         if(newUser.getId()!=null){

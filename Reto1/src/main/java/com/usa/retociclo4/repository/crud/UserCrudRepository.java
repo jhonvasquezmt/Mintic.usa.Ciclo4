@@ -1,7 +1,7 @@
 package com.usa.retociclo4.repository.crud;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
 import com.usa.retociclo4.model.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
